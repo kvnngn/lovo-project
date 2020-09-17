@@ -30,10 +30,9 @@ export default class ArticlesList extends React.Component<Props, State> {
         }
     }
 
-    changeArticles = async () => {
-        const new_articles = await getArticles(this.state.query, this.state.page);
-        this.setState({loading: true});
-        this.setState({articles: this.state.articles.concat(new_articles)});
+    changeArticles = async (nextPage = false) => {
+        !nextPage ? this.setState({loading: true, page: 0}) : this.setState({loading: true});
+        this.setState({articles: await getArticles(this.state.query, this.state.page)});
     };
 
     divideArticleByRow(nbArticlesByRow = 3) {
@@ -44,12 +43,12 @@ export default class ArticlesList extends React.Component<Props, State> {
         const res = newArr.map((rowOfArticles, index) => {
             const cols = rowOfArticles.map(article => {
                 return (
-                    <Col className='col-md-4 col-sm-12' key={article._id}>
+                    <Col className='col col-12 col-sm-6 col-md-4 mb-3' key={article._id}>
                         <ArticleCard article={article}></ArticleCard>
                     </Col>
                 )
             });
-            return (<Row className='mb-3' key={index}>{cols}</Row>)
+            return (<Row key={index}>{cols}</Row>)
         });
         return res;
     }
@@ -62,7 +61,7 @@ export default class ArticlesList extends React.Component<Props, State> {
 
     nextPage = () => {
         this.setState({page: this.state.page + 1}, () => {
-            this.changeArticles();
+            this.changeArticles(true);
         });
     };
 
@@ -82,7 +81,7 @@ export default class ArticlesList extends React.Component<Props, State> {
                     <SearchBar onSearch={this.changeQuery} inputValue=''/>
                     {this.divideArticleByRow(3)}
                     <div>
-                        <Button onClick={this.nextPage}>Next page</Button>
+                        <Button onClick={this.nextPage}>Load more</Button>
                     </div>
                 </Container>
             )
