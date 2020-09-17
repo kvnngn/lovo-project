@@ -2,7 +2,6 @@ import {HttpResponse} from "../cors/request/request.interface";
 import {ArticleInterface} from "./article.interface";
 
 export function fromHttpResponseToArticleList(data: HttpResponse) {
-    console.log(data);
     return data.response.docs.map((doc: any) => {
         return {
             abstract: doc.abstract,
