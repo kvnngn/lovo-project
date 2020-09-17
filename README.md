@@ -1,4 +1,4 @@
-This project was bootstrapped for LOVO Company in less than 10 hours.
+This project has been realized for LOVO Company in less than 10 hours.
 
 Please do not forget to install the dependencies with `npm install`.
 
