@@ -1,6 +1,5 @@
 import React from 'react';
 import {Props, State} from "./searchBar.interface";
-import {getArticles} from "../../../api/article/article.requests";
 import {Button, FormControl, InputGroup} from "react-bootstrap";
 import './searchBar.css';
 

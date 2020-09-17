@@ -7,7 +7,6 @@ import Row from "react-bootstrap/cjs/Row";
 import ArticleCard from "../../components/articleCard/articleCard";
 import {Button, Col} from "react-bootstrap";
 import SearchBar from "../../components/searchBar/searchBar";
-import {Waypoint} from "react-waypoint";
 
 export default class ArticlesList extends React.Component<Props, State> {
     constructor(props: Props) {
